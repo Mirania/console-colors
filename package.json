@@ -1,0 +1,19 @@
+{
+  "name": "console-colors",
+  "version": "1.2.0",
+  "description": "useful console text coloring methods",
+  "engines": {
+    "node": "8.11.3"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Me",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
