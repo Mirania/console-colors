@@ -114,11 +114,11 @@ const logSpecificStyle = (st, text, ...params) => {
     if (!(st.bg && st.background)) { // having both is invalid, ignore
         if (st.bg) {
             let idx = getBackgroundNumber(st.bg);
-            if (idx!=-1) formatting = effect(idx);
+            if (idx!=-1) formatting += effect(idx);
         }
         if (st.background) {
             let idx = getBackgroundNumber(st.background);
-            if (idx!=-1) formatting = effect(idx);
+            if (idx!=-1) formatting += effect(idx);
         }
     }
 
