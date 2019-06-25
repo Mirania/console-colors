@@ -22,7 +22,7 @@ I recommend using **console-colors** if you don't want to read more.
 
   - methods for coloring a line of text: ```bold(), black(), red(), green(), gold(), blue(), magenta(), cyan(), white(), grey(), gray(), ruby(), leaf(), yellow(), ocean(), pink(), sky(), light()```
   
-  - method to create a string with the intended colors: ```format()```, an object which can have 2 keys:
+  - method to create a string with the intended colors: ```format()```, which accepts a **style**. A **style** is an object that can have 2 keys:
   
       - **text**, which may be any of the colors mentioned above
       
