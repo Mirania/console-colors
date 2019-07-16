@@ -25,33 +25,9 @@ module.exports = {
 
 // ------------- inherit --------------
 
-// these properties won't be shown/autocompleted by the IDE if added dynamically
-
-module.exports.debug = console.debug;
-module.exports.info = console.info;
-module.exports.warn = console.warn;
-module.exports.error = console.error;
-module.exports.dir = console.dir;
-module.exports.time = console.time;
-module.exports.timeEnd = console.timeEnd;
-module.exports.trace = console.trace;
-module.exports.assert = console.assert;
-module.exports.clear = console.clear;
-module.exports.count = console.count;
-module.exports.countReset = console.countReset;
-module.exports.group = console.group;
-module.exports.groupCollapsed = console.groupCollapsed;
-module.exports.groupEnd = console.groupEnd;
-module.exports.Console = console.Console;
-module.exports.dirxml = console.dirxml;
-module.exports.table = console.table;
-module.exports.markTimeline = console.markTimeline;
-module.exports.profile = console.profile;
-module.exports.profileEnd = console.profileEnd;
-module.exports.timeline = console.timeline;
-module.exports.timelineEnd = console.timelineEnd;
-module.exports.timeStamp = console.timeStamp;
-module.exports.context = console.context;
+for (i in console) {
+    if (i !== "log") module.exports[i] = console[i];
+}
 
 // ------------ internals -------------
 
