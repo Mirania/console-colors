@@ -190,9 +190,6 @@ declare namespace colors {
   function timelineEnd(label?: string): void
   function timeStamp(label?: string): void
 
-  let Console: Console = console.Console;
-  let context: any = console.context;
-
   /**
    * Returns a string colored with the specified text
    * and/or background colors.
