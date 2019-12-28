@@ -20,7 +20,12 @@ module.exports = {
     light: (message, ...optionalParams) => print(97,message,...optionalParams),
     // other utils
     log: (message, ...optionalParams) => log(message, ...optionalParams),
+    slog: (aStyle, message, ...optionalParams) => logSpecificStyle(aStyle, message, ...optionalParams),
     format: (aStyle, message) => format(aStyle, message),
+    // config
+    colorBackground: (bool) => colorBackground(bool),   
+    setStyle: (obj) => setStyle(obj),
+    clearStyle: () => clearStyle()
 };
 
 // ------------- inherit --------------
@@ -29,14 +34,85 @@ for (i in console) {
     if (i !== "log") module.exports[i] = console[i];
 }
 
+// -------------- state ---------------
+
+let background = false; // color the background instead of text?
+
+const colorBackground = (bool) => {
+    if (bool===true) background = true; 
+    if (bool===false) background = false;
+}
+
+let style = {}; // style to use, if defined
+
+const setStyle = (obj) => {
+    style = {};
+
+    if (obj.text) {
+        let idx = getTextColorNumber(obj.text);
+        if (idx!=-1) style.text = idx;
+    }
+
+    if (obj.bg && obj.background) return; // having both is invalid, ignore
+
+    if (obj.bg) {
+        let idx = getBackgroundNumber(obj.bg);
+        if (idx!=-1) style.background = idx;
+    }
+
+    if (obj.background) {
+        let idx = getBackgroundNumber(obj.background);
+        if (idx!=-1) style.background = idx;
+    }
+}
+
+const clearStyle = () => style = {};
+
 // ------------ internals -------------
 
 const log = (text, ...params) => { // no predetermined colors
-    console.log(replaceResets(text, reset()), ...params, reset());
+    let formatting = "";
+
+    if (style.text) formatting += effect(style.text);
+    if (style.background) formatting += effect(style.background);
+
+    console.log(formatting+replaceResets(text, formatting), ...params, reset());
 }
 
-const print = (num, text, ...params) => { // predetermined color
-    console.log(effect(num)+replaceResets(text, effect(num)), ...params, reset());
+const logSpecificStyle = (st, text, ...params) => {
+    let formatting = "";
+
+    if (st.text) {
+        let idx = getTextColorNumber(st.text);
+        if (idx!=-1) formatting += effect(idx);
+    }
+
+    if (!(st.bg && st.background)) { // having both is invalid, ignore
+        if (st.bg) {
+            let idx = getBackgroundNumber(st.bg);
+            if (idx!=-1) formatting += effect(idx);
+        }
+        if (st.background) {
+            let idx = getBackgroundNumber(st.background);
+            if (idx!=-1) formatting += effect(idx);
+        }
+    }
+
+    console.log(formatting+replaceResets(text, formatting), ...params, reset());
+}
+
+const print = (num, text, ...params) => { // some predetermined colors
+    let formatting = "";
+
+    if (background && num!=1) { // bold(1) is special - it has no bg counterpart
+        formatting += effect(num+10);
+        if (style.text) formatting += effect(style.text);
+    } else {
+        formatting += effect(num);
+        if (style.background) formatting += effect(style.background);
+    }
+
+    console.log(formatting+replaceResets(text, formatting), ...params, reset());
 }
 
 const format = (st, text) => { // returns a block of text with the intended colors
@@ -93,5 +169,5 @@ const prepareString = (str) => {
 }
 
 const replaceResets = (str, f) => {
-    return prepareString(str).replace(/\[0m/g, reset()+f); // hacky way to fix log() with format()
+    return prepareString(str).replace(/\[0m/g, reset()+f); // hacky way to fix log() with format() + setStyle
 }

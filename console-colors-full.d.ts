@@ -5,7 +5,7 @@ declare namespace console {
  
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text bold.
+   * but makes the resulting text or background bold.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -14,7 +14,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text black.
+   * but makes the resulting text or background black.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -23,7 +23,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text red.
+   * but makes the resulting text or background red.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -32,7 +32,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text green.
+   * but makes the resulting text or background green.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -41,7 +41,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text gold.
+   * but makes the resulting text or background gold.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -50,7 +50,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text blue.
+   * but makes the resulting text or background blue.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -59,7 +59,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text magenta.
+   * but makes the resulting text or background magenta.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -68,7 +68,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text cyan.
+   * but makes the resulting text or background cyan.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -77,7 +77,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text white.
+   * but makes the resulting text or background white.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -86,7 +86,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text grey.
+   * but makes the resulting text or background grey.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -95,7 +95,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text gray.
+   * but makes the resulting text or background gray.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -104,7 +104,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text ruby (similar to red).
+   * but makes the resulting text or background ruby (similar to red).
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -113,7 +113,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text leaf (similar to green).
+   * but makes the resulting text or background leaf (similar to green).
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -122,7 +122,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text yellow.
+   * but makes the resulting text or background yellow.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -131,7 +131,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text ocean (similar to blue).
+   * but makes the resulting text or background ocean (similar to blue).
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -140,7 +140,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text pink.
+   * but makes the resulting text or background pink.
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -149,7 +149,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text sky (similar to blue).
+   * but makes the resulting text or background sky (similar to blue).
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -158,7 +158,7 @@ declare namespace console {
 
   /**
    * Same functionality as the native `console.log()` function,
-   * but makes the resulting text light (similar to white).
+   * but makes the resulting text or background light (similar to white).
    * 
    * @param message Element to print.
    * @param optionalParams Other elements to print.
@@ -201,6 +201,41 @@ declare namespace console {
    * @param message Element to print.
    */
   function format(style: Style, message: any): string
+
+  /**
+   * Same functionality as the native `console.log()` function,
+   * but colors the resulting string based on the specified style.
+   * 
+   * @param slog An object with the keys `text` and/or `background` (`bg` also works).
+   * @param message Element to print.
+   * @param optionalParams Other elements to print.
+   */
+  function slog(style: Style, message?: any, ...optionalParams: any[]): void
+
+  /**
+   * Declare whether a function such as ```colors.red()``` will color the text
+   * or the background (true = background, false = text). False by default.
+   * 
+   * @param bool Should the background be colored instead of text?
+   */
+  function colorBackground(bool: boolean): void
+
+  /**
+   * Declare a default style to be used when no text or background colors
+   * have been specified. Note that this style will not interfere with
+   * the main purpose of functions such as ```colors.red()``` (if
+   * colorBackground=true and the default style requests blue backgrounds
+   * and blue text, ```colors.red()``` will print blue text in a red
+   * background).
+   * 
+   * @param bool Should the background be colored instead of text?
+   */
+  function setStyle(style: Style): void
+
+  /**
+   * Clear a default style that was previously set with ```colors.setStyle()```.
+   */
+  function clearStyle(): void
 
   interface Style {
     text?: 'bold' | 'black' | 'red' | 'green' | 'gold' | 'blue' | 'magenta' | 'cyan' | 'white' | 'grey' |

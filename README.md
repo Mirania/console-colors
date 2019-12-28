@@ -21,3 +21,15 @@ const console = require("./console-colors");
       - **bg** or **background**, any of the colors above except **bold**
   
 ![](https://i.imgur.com/fineExl.png)
+  
+  - set background mode: ```colorBackground(boolean)```, if ```true``` then methods such as ```red()``` will color the background instead of text
+  
+  - set a persistent style: ```setStyle() / clearStyle()```, if a style is set then all printing methods will try to respect it
+  
+       - methods such as ```red()``` that already define colors will ignore the style's text or background color (which one depends on background mode)
+       
+  - use a style for a specific print: ```slog()``` receives a style along with a message, and respects that style for only that call
+  
+![](https://i.imgur.com/wA9YnWN.png)
+
+![](https://i.imgur.com/Mk43ba8.png)
