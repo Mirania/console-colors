@@ -1,7 +1,7 @@
-export as namespace colors
-export = colors
+export as namespace console
+export = console
 
-declare namespace colors {
+declare namespace console {
  
   /**
    * Same functionality as the native `console.log()` function,
@@ -189,6 +189,9 @@ declare namespace colors {
   function timeline(label?: string): void
   function timelineEnd(label?: string): void
   function timeStamp(label?: string): void
+
+  let Console: Console = console.Console;
+  let context: any = console.context;
 
   /**
    * Returns a string colored with the specified text
