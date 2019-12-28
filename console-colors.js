@@ -19,27 +19,22 @@ module.exports = {
     sky: (message, ...optionalParams) => print(96,message,...optionalParams),
     light: (message, ...optionalParams) => print(97,message,...optionalParams),
     // other utils
-    log: (message, ...optionalParams) => log(message, ...optionalParams),
-    format: (aStyle, message) => format(aStyle, message),
+    format: (style, message) => format(style, message),
 };
 
 // ------------- inherit --------------
 
-for (i in console) {
-    if (i !== "log") module.exports[i] = console[i];
-}
+for (i in console)
+    module.exports[i] = console[i];
 
 // ------------ internals -------------
-
-const log = (text, ...params) => { // no predetermined colors
-    console.log(replaceResets(text, reset()), ...params, reset());
-}
 
 const print = (num, text, ...params) => { // predetermined color
     console.log(effect(num)+replaceResets(text, effect(num)), ...params, reset());
 }
 
 const format = (st, text) => { // returns a block of text with the intended colors
+    if (st===undefined || st===null) return text;
     let formatting = "";
 
     if (st.text) {
