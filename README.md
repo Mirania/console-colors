@@ -2,10 +2,14 @@
 
 Improve the JS console's capabilities with pretty colors.
 
+```
+npm i @mirania/console-colors
+```
+
 The module inherits all functionality from the native ```console```, so you can safely replace it as such:
 
 ```js 
-const console = require("./console-colors");
+const console = require("@mirania/console-colors");
 ```
 
 -----

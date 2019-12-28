@@ -1,10 +1,7 @@
 {
-  "name": "console-colors",
-  "version": "1.0.0",
+  "name": "@mirania/console-colors",
+  "version": "1.0.2",
   "description": "useful console text coloring methods",
-  "engines": {
-    "node": "8.11.3"
-  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -12,9 +9,24 @@
   },
   "author": "Me",
   "license": "MIT",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mirania/console-colors.git"
   },
-  "devDependencies": {
+  "keywords": [
+    "console",
+    "colors",
+    "nodejs",
+    "cmd",
+    "browser",
+    "oop",
+    "text",
+	"background"
+  ],
+  "bugs": {
+    "url": "https://github.com/Mirania/console-colors/issues"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "homepage": "https://github.com/Mirania/console-colors#readme"
 }
